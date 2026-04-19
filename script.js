@@ -9,7 +9,7 @@
 let board = ["○", "○", "○", "○", null, "×", "×", "○", "×"];
 
 function getWinner(targetBoard){
-    winPattern = [[0, 1, 2],
+    const winPattern = [[0, 1, 2],
                   [3, 4, 5],
                   [6, 7, 8],
                   [0, 3, 6],
@@ -93,6 +93,6 @@ function showResult(winner){
 }
 
 // 確認してみる
-getWinner(board);
+//getWinner(board);
 
 // ↑ abe_387 -------------------------
