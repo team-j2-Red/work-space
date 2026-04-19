@@ -3,6 +3,9 @@ let board = ['', '', '', '', '', '', '', '', ''];
 let currentPlayer = 'X';
 let isGameActive = true;
 
+//DOM要素の取得
+const cells = document.querySelectorAll('.cell');
+
 //特定の cell がクリックされた時にその cell に "currentPlayer" を入れる
 function handleClick(cell) {
   const clickedCell = event.target;
@@ -23,3 +26,6 @@ function handleClick(cell) {
   getWinner(board);
   currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
 }
+
+//クリックイベントを追加する
+cells.forEach((cell) => cell.addEventListener('click', handleCellClick));
