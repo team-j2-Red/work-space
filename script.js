@@ -28,4 +28,5 @@ function handleClick(cell) {
 }
 
 //クリックイベントを追加する
-cells.forEach((cell) => cell.addEventListener('click', handleCellClick));
+cells.forEach((cell) => cell.addEventListener('click', handleClick));
+
