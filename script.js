@@ -7,7 +7,7 @@ let isGameActive = true;
 const cells = document.querySelectorAll('.cell');
 
 //特定の cell がクリックされた時にその cell に "currentPlayer" を入れる
-function handleClick(cell) {
+function handleClick(event) {
   const clickedCell = event.target;
 
   //id="cell0" のような文字列から、"cell" を消して "0" だけを取り出し、数値に変換する
