@@ -1,6 +1,3 @@
-// ↓ abe_387 -------------------------
-
-
 function getWinner(targetBoard){
     const winPattern = [[0, 1, 2],
                   [3, 4, 5],
@@ -30,6 +27,7 @@ function getWinner(targetBoard){
         if (a !== '' && a == b && a == c){
             showResult(a);
             hasResult = true;
+            isGameActive = false;   // ゲームの終了
             break;
         }
 
@@ -38,6 +36,7 @@ function getWinner(targetBoard){
     if (!hasResult) {
         if (!hasnull){
             showResult("draw");
+            isGameActive = false;
         }
     }
 }
@@ -45,16 +44,19 @@ function getWinner(targetBoard){
 function showResult(winner){
     let resultPage = document.getElementById("resultPage");
     let gamePage = document.getElementById("gamePage");
-    let container = document.createElement(("div"));
-    resultPage.append(container);
+
 
     // gamePageを一旦非表示
     // gamePage.classList.add("d-none");
 
-    // 結果画面の見た目調整
+    // resultPageの中身のリセット（増殖防止）
+    resultPage.innerHTML = "";
+
+    // 結果画面の中身(container)の見た目調整
+    let container = document.createElement(("div"));
     container.classList.add("d-flex", "flex-column", "justify-content-center", "align-items-center", "mt-5", "bg-light", "w-75", "mx-auto", "border", "border-success", "border-3"); 
 
-    if (winner != "draw"){
+    if (winner !== "draw"){
         container.innerHTML =
         `
         <h2 class="mt-2 text-primary">${winner}の勝ちです</h2>
@@ -67,22 +69,30 @@ function showResult(winner){
     
     // 再戦ボタンを作る
     let rematchBtn = document.createElement("button");
-    container.append(rematchBtn)
+    
     rematchBtn.classList.add("btn", "btn-outline-success", "my-3", "fw-bold");
     rematchBtn.innerText = "再戦";
 
     rematchBtn.addEventListener("click", function(){
         // ここで初期画面に戻りたい
         // 盤面のデータをリセット
-        for (let i = 0; i < 9; i++) {
-            board[i] = null;
-        } 
+        board.fill(''); 
 
-        // ここで盤面の表示をリセットする関数を呼び出したい
+        // 次のゲームの準備と盤面表示のリセット
+        isGameActive = true;
+        currentPlayer = 'X';
+        cells.forEach(cell => cell.textContent = '');
+        
 
-        container.remove();
+        // resultPageの中身を空っぽにする（これで次も表示できるようになる）
+        resultPage.innerHTML = "";
+        
         // gamePage.classList.remove("d-none")
     })
+
+    // 最後にresultPageに合体させる
+    container.append(rematchBtn);
+    resultPage.append(container);
 }
 
 
