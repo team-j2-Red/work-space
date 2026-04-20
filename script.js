@@ -1,11 +1,5 @@
-
-
-
 // ↓ abe_387 -------------------------
 
-
-// 現盤面(仮データ)
-let board = ["○", "○", "○", "○", null, "×", "×", "○", "×"];
 
 function getWinner(targetBoard){
     const winPattern = [[0, 1, 2],
@@ -21,7 +15,7 @@ function getWinner(targetBoard){
 
     // マス目にまだ空欄があるかチェック
     for (let i=0; i<9; i++){
-        if (targetBoard[i] == null) {
+        if (targetBoard[i] === '') {
             hasnull = true;
             break;
         }
@@ -33,7 +27,7 @@ function getWinner(targetBoard){
         let b = targetBoard[winPattern[i][1]];
         let c = targetBoard[winPattern[i][2]];
         
-        if (a != null && a == b && a == c){
+        if (a !== '' && a == b && a == c){
             showResult(a);
             hasResult = true;
             break;
@@ -55,7 +49,7 @@ function showResult(winner){
     resultPage.append(container);
 
     // gamePageを一旦非表示
-    gamePage.classList.add("d-none");
+    // gamePage.classList.add("d-none");
 
     // 結果画面の見た目調整
     container.classList.add("d-flex", "flex-column", "justify-content-center", "align-items-center", "mt-5", "bg-light", "w-75", "mx-auto", "border", "border-success", "border-3"); 
@@ -87,11 +81,10 @@ function showResult(winner){
         // ここで盤面の表示をリセットする関数を呼び出したい
 
         container.remove();
-        gamePage.classList.remove("d-none")
+        // gamePage.classList.remove("d-none")
     })
 }
 
-// 確認してみる
-//getWinner(board);
+
 
 // ↑ abe_387 -------------------------
