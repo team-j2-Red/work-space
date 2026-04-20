@@ -17,15 +17,3 @@
   line-height: 100px;
   cursor: pointer;
 }
-
-
-
-.cell {
-  width: 100px;
-  height: 100px;
-  border: 1px solid black;
-  font-size: 3rem;
-  text-align: center;
-  line-height: 100px;
-  cursor: pointer;
-}
