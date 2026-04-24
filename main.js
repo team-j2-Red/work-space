@@ -31,7 +31,7 @@ import { updateCellUI, showResultUI, resetUI } from './ui.js';
 // ・配列内のすべての要素それぞれについて、テキスト部分を空にする
 // ・結果画面の中身を空にする. 中身とはinnerHTMlのこと(showResultUI関数で作るやつ)
 
-const cells = document.querySelectorAll('cell');
+const cells = document.querySelectorAll('.cell');
 
 function handleClick(event) {
   // clickedCell にはクリックされた要素そのものが代入される(例：<div class="cell" id="cell5"></div>)
