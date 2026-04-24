@@ -1,4 +1,4 @@
-function getWinner(targetBoard){
+export function getWinner(targetBoard){
     const winPattern = [[0, 1, 2],
                   [3, 4, 5],
                   [6, 7, 8],
@@ -7,7 +7,7 @@ function getWinner(targetBoard){
                   [2, 5, 8], 
                   [0, 4, 8],
                   [2, 4, 6]];
-    let hasResult = false;  // 勝敗が決まったか
+    let hasnull = false     // まだ空きマスがあるか
 
     // マス目にまだ空欄があるかチェック
     for (let i=0; i<9; i++){
@@ -24,76 +24,16 @@ function getWinner(targetBoard){
         let c = targetBoard[winPattern[i][2]];
         
         if (a !== '' && a == b && a == c){
-            showResult(a);
-            hasResult = true;
-            isGameActive = false;   // ゲームの終了
-            break;
+            return a;   // 勝敗決定
         }
 
     }
     
-    if (!hasResult) {
-        if (!hasnull){
-            showResult("draw");
-            isGameActive = false;
-        }
-    }
-}
-
-function showResult(winner){
-    let resultPage = document.getElementById("resultPage");
-    let gamePage = document.getElementById("gamePage");
-
-
-    // gamePageを一旦非表示
-    // gamePage.classList.add("d-none");
-
-    // resultPageの中身のリセット（増殖防止）
-    resultPage.innerHTML = "";
-
-    // 結果画面の中身(container)の見た目調整
-    let container = document.createElement(("div"));
-    container.classList.add("d-flex", "flex-column", "justify-content-center", "align-items-center", "mt-5", "bg-light", "w-75", "mx-auto", "border", "border-success", "border-3"); 
-
-    if (winner !== "draw"){
-        container.innerHTML =
-        `
-        <h2 class="mt-2 text-primary">${winner}の勝ちです</h2>
-        `;
-    } 
-    else {
-        container.innerHTML = 
-        "<h2>引き分けです</h2>";
+    if (!hasnull){
+            return "draw";  // 引き分け
     }
     
-    // 再戦ボタンを作る
-    let rematchBtn = document.createElement("button");
-    
-    rematchBtn.classList.add("btn", "btn-outline-success", "my-3", "fw-bold");
-    rematchBtn.innerText = "再戦";
 
-    rematchBtn.addEventListener("click", function(){
-        // ここで初期画面に戻りたい
-        // 盤面のデータをリセット
-        board.fill(''); 
-
-        // 次のゲームの準備と盤面表示のリセット
-        isGameActive = true;
-        currentPlayer = 'X';
-        cells.forEach(cell => cell.textContent = '');
-        
-
-        // resultPageの中身を空っぽにする（これで次も表示できるようになる）
-        resultPage.innerHTML = "";
-        
-        // gamePage.classList.remove("d-none")
-    })
-
-    // 最後にresultPageに合体させる
-    container.append(rematchBtn);
-    resultPage.append(container);
+    return false;    // まだ勝敗ついていない
 }
 
-
-
-// ↑ abe_387 -------------------------
