@@ -43,7 +43,11 @@ export function showResultUI(winner, clickedRematch) {
 
 // マス目UIのリセット
 export function resetUI(cells) {
-    cells.forEach(cell => cell.textContent = '');
+    cells.forEach(cell => {
+        cell.textContent = '';
+        cell.style.color = '';
+    });
+
 // 結果画面UIのリセット
     const resultPage = document.getElementById("resultPage");
     resultPage.innerHTML = "";
